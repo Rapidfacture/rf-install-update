@@ -1,44 +1,25 @@
+// get project folder path
+var path = require('path');
+var projectPath = path.join(__dirname, '../..');
 
-function install (options, path) {
-   var opts = _.merge(defaulOptions, options);
-   printInstallationHeader(path);
-   pull(opts);
-   build(opts);
-   configure(opts, 'force');
-   pm2Startup();
-}
-
-
-
-
-# show install screen
-. 'shell/function/installScreen.sh'
-
-
-# check and install external dependencies
-. 'shell/function/installExternalDependencys.sh'
+// import utils
+const {
+   checkExternalDependencies,
+   // ifPullIsNeededThen,
+   // pull,
+   build,
+   configure,
+   printInstallationHeader
+   // pm2Startup
+} = require('rf-install-update')(projectPath);
 
 
-# get dependencies
-printf "Get npm packages ... \n"
-npm install
+// do the installation
+printInstallationHeader();
+checkExternalDependencies();
+build();
+configure({}, 'force');
 
 
-# db config
-printf "configure db to localhost, enable demo account credentials on login site \n"
-grunt copy:enviroment-dev
-
-
-# db config
-printf "create mail templates \n"
-grunt copy:mail
-
-
-printf "\n
-Installation finished. \n
-Run 'grunt' in terminal of the project folder to start development. \n
-This will build the application and run it on a webserver which will restart on your code changes."
-
-
-# leave terminal open to see output; executed on PC via double click
-$SHELL
+// log
+console.log('Installation finished. \nRun "grunt" in terminal of the project folder to start development. \nThis will build the application and run it on a webserver which will restart on your code changes.');
