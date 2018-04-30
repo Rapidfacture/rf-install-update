@@ -11,7 +11,7 @@ const {
    configure,
    printInstallationHeader
    // pm2Startup
-} = require('rf-install-update')(projectPath);
+} = require('rf-install-update').start(projectPath);
 
 
 // do the installation

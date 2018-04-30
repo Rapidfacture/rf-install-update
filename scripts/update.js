@@ -16,7 +16,7 @@ const {
    build,
    configure,
    pm2ResartAll
-} = require('rf-install-update')(projectPath);
+} = require('rf-install-update').start(projectPath);
 
 
 // do the installation
