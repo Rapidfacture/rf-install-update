@@ -103,7 +103,7 @@ function pull (options) {
 function build (options) {
    var opts = _.merge(defaulOptions, options);
    sh('npm install');
-   sh('grunt');
+   sh('grunt buildDev');
    if (opts.compress) sh('grunt compress');
 }
 
