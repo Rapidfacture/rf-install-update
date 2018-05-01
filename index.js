@@ -56,6 +56,7 @@ module.exports.start = function (projPath, confPath) {
       checkExternalDependencies,
       ifPullIsNeededThen,
       pull,
+      npmInstall,
       build,
       configure,
       printInstallationHeader,
@@ -132,10 +133,15 @@ function pull (options) {
    sh(pullCmd);
 }
 
+
+function npmInstall (options) {
+   logSectionInfo('get npm packages');
+   sh('npm install');
+}
+
 function build (options) {
    var opts = _.merge(defaulOptions, options);
    logSectionInfo('build the app');
-   sh('npm install');
    sh('grunt buildDev');
    if (opts.compress) sh('grunt compress');
 }
