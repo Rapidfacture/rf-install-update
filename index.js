@@ -165,7 +165,7 @@ function printInstallationHeader (path) {
 
 function pm2Startup () {
    logSectionInfo('starting up with pm2');
-   sh('pm2 start server.js --name ' + packageJson.name);
+   sh(`pm2 start ${projectPath}/server.js --name ` + packageJson.name);
    sh('pm2 startup');
    sh('sudo su -c "env PATH=$PATH:/usr/bin pm2 startup systemd -u $USER --hp /home/$USER"', 'Make startup script execute on system start');
    sh('pm2 save', 'save current process list');
@@ -186,6 +186,7 @@ function sh (cmd, infomessage) {
 }
 
 function logSectionInfo (message) {
+   log.info(`\n`);
    log.info(message);
    log.info('--------------------------------------------');
 }
