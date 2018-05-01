@@ -25,14 +25,15 @@ var defaulOptions = {};
 var packageJson = {};
 var config = {};
 var projectPath = '';
+var configPath = '';
 
 
 module.exports.start = function (projPath, confPath) {
 
    projectPath = projPath;
+   configPath = projectPath + '/config/conf/config.js';
 
    // try to get config options from project config
-   var configPath = projectPath + '/config/conf/config.js';
    if (fs.existsSync(configPath)) {
       config = readPkg.sync(configPath);
       defaulOptions = _.merge(initOptions, config);
@@ -64,7 +65,7 @@ module.exports.start = function (projPath, confPath) {
 };
 
 function chooseEnvirnonment () {
-   return configChoose(projectPath);
+   return configChoose(configPath);
 }
 
 function checkExternalDependencies (options) {
