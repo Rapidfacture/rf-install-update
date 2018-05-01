@@ -136,7 +136,15 @@ function ifPullIsNeededThen (options, callback) {
 function pull (options) {
    var opts = _.merge(defaulOptions, options);
    logSectionInfo('get latest code');
-   var pullCmd = 'git pull' + (opts.branch ? 'origin ' + opts.branch : '');
+
+   var currentBranch = opts.branch;
+
+   if (!currentBranch) {
+      var gitState = git.checkSync(projectPath);
+      currentBranch = gitState.branch;
+   }
+
+   var pullCmd = 'git pull' + currentBranch + ' ';
    if (opts.forcePull) pullCmd += ' --force';
    sh(pullCmd);
 }
