@@ -12,7 +12,7 @@ var projectPath = path.join(__dirname, '../.');
 
 // import utils
 const {
-   // chooseEnvirnonment, // this function is async
+   chooseEnvirnonment, // this function is async
    checkExternalDependencies,
    ifPullIsNeededThen,
    pull,
@@ -29,7 +29,7 @@ const {
 ifPullIsNeededThen(function () {
    pull();
    npmInstall();
-   checkExternalDependencies(null, `askIfDbIsNotInstalled`);
+   checkExternalDependencies();
    build();
    configure();
    pm2ResartAll();
