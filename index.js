@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const fs = require('fs');
-const log = require('rf-log');
+const log = require('rf-log').start(`[rf-install-update]`);
 const shell = require('shelljs');
 const git = require('git-state');
 const readPkg = require('read-pkg');
@@ -27,15 +27,28 @@ var config = {};
 var projectPath = '';
 
 
-module.exports.start = function (projPath) {
+module.exports.start = function (projPath, confPath) {
 
    projectPath = projPath;
+
+   // try to get config options from project config
    var configPath = projectPath + '/config/conf/config.js';
+   if (fs.existsSync(configPath)) {
+      config = readPkg.sync(configPath);
+      defaulOptions = _.merge(initOptions, config);
+   } else {
+      log.info(`file ${configPath} not existent, using initOptions`);
+   }
+   defaulOptions = _.merge(initOptions, config);
+
+
    var packageJsonPath = projectPath + '/package.json';
-   config = readPkg.sync(configPath);
+   if (!fs.existsSync(packageJsonPath)) {
+      log.critical(`file ${packageJsonPath} not existent, aborting ...`);
+   }
    packageJson = readPkg.sync(packageJsonPath);
 
-   defaulOptions = _.merge(initOptions, config);
+
 
    return {
       checkExternalDependencies,
