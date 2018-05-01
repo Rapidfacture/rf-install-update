@@ -5,7 +5,7 @@ const shell = require('shelljs');
 const git = require('git-state');
 const readPkg = require('read-pkg');
 const getExternalDeps = require('./lib/externalDeps.js');
-
+const configChoose = require('./lib/configChoose.js');
 
 // options: function parameter options over config file options over initOptions
 var initOptions = {
@@ -51,6 +51,7 @@ module.exports.start = function (projPath, confPath) {
 
 
    return {
+      chooseEnvirnonment, // this function is async
       checkExternalDependencies,
       ifPullIsNeededThen,
       pull,
@@ -61,6 +62,10 @@ module.exports.start = function (projPath, confPath) {
       pm2ResartAll
    };
 };
+
+function chooseEnvirnonment () {
+   return configChoose(projectPath);
+}
 
 function checkExternalDependencies (options) {
    var customShellScript = projectPath + '/shell/getCustomExternalDeps.sh';
