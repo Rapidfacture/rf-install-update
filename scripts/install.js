@@ -1,6 +1,9 @@
 /* eslint no-unused-vars: off */
-const path = require('path');
-const projectPath = path.join(__dirname, '../.');
+
+// console.log(process.argv)
+if (!process.argv[2]) throw new Error('no projectPath was defined as parameter for the script!');
+const projectPath = process.argv[2];
+
 const confirm = require('inquirer-confirm');
 const {
    chooseEnvirnonment, // this function is async

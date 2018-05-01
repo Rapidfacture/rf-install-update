@@ -6,9 +6,9 @@
  */
 /* eslint no-unused-vars: off */
 
-// get project folder path
-var path = require('path');
-var projectPath = path.join(__dirname, '../.');
+// console.log(process.argv)
+if (!process.argv[2]) throw new Error('no projectPath was defined as parameter for the script!');
+const projectPath = process.argv[2];
 
 // import utils
 const {
