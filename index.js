@@ -65,6 +65,7 @@ module.exports.start = function (projPath, confPath) {
 };
 
 function chooseEnvirnonment () {
+   logSectionInfo('choose enviromnent');
    return configChoose(configPath);
 }
 
@@ -142,7 +143,7 @@ function build (options) {
 function configure (options, force) {
    logSectionInfo('configuring project');
    var opts = _.merge(defaulOptions, options);
-   if (force || opts.refreshConfig) sh('grunt copy:' + opts.environment);
+   if (opts.refreshConfig) sh('grunt copy:' + opts.environment);
    if (force || opts.refreshMailTemplates) sh('grunt copy:' + opts.mailTemplates);
 }
 
