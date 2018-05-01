@@ -43,8 +43,12 @@ module.exports.start = function (projPath, confPath) {
    } else {
       log.info(`file ${activeConfigPath} not existent, using initOptions`);
    }
-   defaulOptions = _.merge(initOptions, config);
 
+   if (config.update) {
+      defaulOptions = _.merge(initOptions, config.update);
+   } else {
+      defaulOptions = initOptions;
+   }
 
    var packageJsonPath = projectPath + '/package.json';
    if (!fs.existsSync(packageJsonPath)) {
