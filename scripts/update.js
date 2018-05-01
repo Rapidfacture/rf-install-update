@@ -11,10 +11,14 @@ var projectPath = path.join(__dirname, '../.');
 
 // import utils
 const {
+   // chooseEnvirnonment, // this function is async
+   // checkExternalDependencies,
    ifPullIsNeededThen,
    pull,
    build,
    configure,
+   // printInstallationHeader,
+   // pm2Startup
    pm2ResartAll
 } = require('rf-install-update').start(projectPath);
 

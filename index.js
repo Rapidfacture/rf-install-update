@@ -71,10 +71,13 @@ function chooseEnvirnonment () {
 function checkExternalDependencies (options) {
    var customShellScript = projectPath + '/shell/getCustomExternalDeps.sh';
    logSectionInfo('installing external dependencies ... ');
-   log.info('checking custom external dependencies script under ' + customShellScript);
+   log.info('checking custom external dependencies script under ');
+   log.info(customShellScript);
    if (fs.existsSync(customShellScript)) {
       log.info('custom script found, executing it');
       sh('.' + projectPath);
+   } else {
+      log.info('no custom script foun, continuing ... ');
    }
 
    getExternalDeps();

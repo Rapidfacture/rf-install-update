@@ -4,6 +4,7 @@ var projectPath = path.join(__dirname, '../.');
 
 // import utils
 const {
+   chooseEnvirnonment, // this function is async
    checkExternalDependencies,
    // ifPullIsNeededThen,
    // pull,
@@ -11,16 +12,19 @@ const {
    configure,
    printInstallationHeader,
    pm2Startup
+   // pm2ResartAll
 } = require('rf-install-update').start(projectPath);
 
 
 // do the installation
-printInstallationHeader();
-checkExternalDependencies();
-build();
-configure({}, 'force');
-pm2Startup();
-
-
-// log
-console.log('Installation finished.');
+(async function install () {
+   printInstallationHeader();
+   checkExternalDependencies();
+   console.log('await chooseEnvirnonment');
+   var config = await chooseEnvirnonment();
+   console.log('after chooseEnvirnonment', config);
+   build(config);
+   configure(config, 'force');
+   pm2Startup();
+   console.log('Installation finished.');
+})();
