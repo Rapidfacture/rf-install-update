@@ -123,7 +123,7 @@ function ifPullIsNeededThen (options, callback) {
       }
    }
 
-   if (gitState.branch && gitState.branch !== opts.branch) {
+   if (opts.branch && gitState.branch !== opts.branch) {
       log.warning('git: wrong branch ' + gitState.branch + ' , switching to branch ' + opts.branch);
       sh('git checkout ' + opts.branch);
    }
