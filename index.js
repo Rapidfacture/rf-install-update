@@ -129,7 +129,10 @@ function ifPullIsNeededThen (options, callback) {
    }
 
    if (gitState.ahead > 0) { // pull is needed
+      log.info(`git: repo is behind ${gitState.ahead} commits`);
       callback();
+   } else {
+      log.info(`git: repo up to date, aborting ...`);
    }
 }
 
