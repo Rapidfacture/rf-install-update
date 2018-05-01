@@ -1,4 +1,4 @@
 module.exports = {
-   install: require('.lib/install.js'),
-   update: require('.lib/update.js')
+   install: require('./lib/install.js'),
+   update: require('./lib/update.js')
 };
