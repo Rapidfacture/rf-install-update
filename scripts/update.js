@@ -28,7 +28,7 @@ const {
 ifPullIsNeededThen(function () {
    pull();
    npmInstall();
-   checkExternalDependencies();
+   checkExternalDependencies(null, `askIfDbIsNotInstalled`);
    build();
    configure();
    pm2ResartAll();

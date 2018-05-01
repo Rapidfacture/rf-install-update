@@ -70,7 +70,7 @@ function chooseEnvirnonment () {
    return configChoose(configPath);
 }
 
-function checkExternalDependencies (options) {
+function checkExternalDependencies (options, dbInstall) {
    var customShellScript = projectPath + '/shell/getCustomExternalDeps.sh';
    logSectionInfo('installing external dependencies ... ');
    log.info('checking custom external dependencies script under ');
@@ -82,7 +82,7 @@ function checkExternalDependencies (options) {
       log.info('no custom script foun, continuing ... ');
    }
 
-   getExternalDeps();
+   getExternalDeps(dbInstall);
 }
 
 function ifPullIsNeededThen (options, callback) {
