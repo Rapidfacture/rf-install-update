@@ -1,6 +1,6 @@
 // get project folder path
 var path = require('path');
-var projectPath = path.join(__dirname, '../..');
+var projectPath = path.join(__dirname, '../.');
 
 // import utils
 const {
