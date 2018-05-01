@@ -19,7 +19,7 @@ const {
 // do the installation
 (async function install () {
    printInstallationHeader();
-   checkExternalDependencies(null, `askIfDbIsNotInstalled`);
+   var externalDepsready = await checkExternalDependencies(null, `askIfDbIsNotInstalled`);
    var config = await chooseEnvirnonment();
    build(config);
    configure(config, 'force');

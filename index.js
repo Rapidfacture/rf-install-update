@@ -82,7 +82,7 @@ function checkExternalDependencies (options, dbInstall) {
       log.info('no custom script foun, continuing ... ');
    }
 
-   getExternalDeps(dbInstall);
+   return getExternalDeps(dbInstall);
 }
 
 function ifPullIsNeededThen (options, callback) {
