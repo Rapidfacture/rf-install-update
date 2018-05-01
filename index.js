@@ -25,20 +25,23 @@ var defaulOptions = {};
 var packageJson = {};
 var config = {};
 var projectPath = '';
-var configPath = '';
-
+var activeConfigPath = '';
+var defaultConfigPath = '';
 
 module.exports.start = function (projPath, confPath) {
 
    projectPath = projPath;
-   configPath = projectPath + '/config/conf/config.js';
+   activeConfigPath = projectPath + '/config/conf/config.js';
+   defaultConfigPath = projectPath + '/config/enviroment/default.js';
 
    // try to get config options from project config
-   if (fs.existsSync(configPath)) {
-      config = require(configPath);
-      defaulOptions = _.merge(initOptions, config);
+   if (fs.existsSync(activeConfigPath)) {
+      config = require(activeConfigPath);
+   } else if (fs.existsSync(defaultConfigPath)) {
+      log.info(`file ${activeConfigPath} not existent, using default Options`);
+      config = require(defaultConfigPath);
    } else {
-      log.info(`file ${configPath} not existent, using initOptions`);
+      log.info(`file ${activeConfigPath} not existent, using initOptions`);
    }
    defaulOptions = _.merge(initOptions, config);
 
@@ -67,7 +70,7 @@ module.exports.start = function (projPath, confPath) {
 
 function chooseEnvirnonment () {
    logSectionInfo('choose enviromnent');
-   return configChoose(configPath);
+   return configChoose(activeConfigPath, defaulOptions);
 }
 
 function checkExternalDependencies (options, dbInstall) {
@@ -157,7 +160,7 @@ function printInstallationHeader (path) {
    console.log('\n');
    var rfBig = '   _______   ___    _   ___ ___ ___  ___  _   ___ _____ _   _ ___ ___\n  /       / | _ \\  /_\\ | _ \\_ _|   \\| __|/_\\ / __|_   _| | | | _ \\ __|\n /  ( )  /  |   / / _ \\|  _/| || |) | _|/ _ \\ (__  | | | |_| |   / _| \n/_______/   |_|_\\/_/ \\_\\_| |___|___/|_|/_/ \\_\\___| |_|  \\___/|_|_\\___|';
    // var rfSmall = '   _______    _  _  _ ___ _   __ _  __ ___    _  __\n  /       /  |_)|_||_) | | \\ |_ |_|/    | | ||_)|_ \n /  ( )  /   | \\| ||  _|_|_/ |  | |\\__  | |_|| \\|__ \n/______ /';
-   log.info(rfBig);
+   console.log(rfBig);
    log.info('-----------------------------------------');
    log.info(packageJson.name + ' Installation');
    log.info(packageJson.description);
