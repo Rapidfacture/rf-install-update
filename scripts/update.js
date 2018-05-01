@@ -27,7 +27,7 @@ const {
 
 
 // do the installation
-ifPullIsNeededThen(function () {
+ifPullIsNeededThen(null, function () {
    pull();
    npmInstall();
    checkExternalDependencies();
