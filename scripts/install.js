@@ -9,7 +9,8 @@ const {
    pull,
    npmInstall,
    build,
-   configure,
+   updateEnvironmentConfig,
+   updateMailConfig,
    printInstallationHeader,
    pm2Startup,
    pm2ResartAll
@@ -22,7 +23,8 @@ const {
    var externalDepsready = await checkExternalDependencies(null, `askIfDbIsNotInstalled`);
    var config = await chooseEnvirnonment();
    build(config);
-   configure(config, 'force');
+   // no update of environment needed here, as it is created before with "chooseEnvirnonment"
+   updateMailConfig(config, 'force');
    confirm('Do you want to start the app with pm2 (recommended for server)')
       .then(function confirmed () {
          pm2Startup();

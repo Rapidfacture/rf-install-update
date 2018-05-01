@@ -65,7 +65,8 @@ module.exports.start = function (projPath, confPath) {
       pull,
       npmInstall,
       build,
-      configure,
+      updateEnvironmentConfig,
+      updateMailConfig,
       printInstallationHeader,
       pm2Startup,
       pm2ResartAll
@@ -153,11 +154,20 @@ function build (options) {
    if (opts.compress) sh('grunt compress');
 }
 
-function configure (options, force) {
-   logSectionInfo('configuring project');
+function updateEnvironmentConfig (options, force) {
+   logSectionInfo('update environment config');
    var opts = _.merge(defaulOptions, options);
-   if (opts.environment && opts.refreshConfig) sh('grunt copy:' + opts.environment);
-   if (force || opts.refreshMailTemplates) sh('grunt copy:' + opts.mailTemplates);
+   if (opts.environment && (opts.refreshConfig || force)) {
+      sh('grunt copy:' + opts.environment);
+   }
+}
+
+function updateMailConfig (options, force) {
+   logSectionInfo('update mail config');
+   var opts = _.merge(defaulOptions, options);
+   if (opts.mailTemplates && (opts.refreshMailTemplates || force)) {
+      sh('grunt copy:' + opts.mailTemplates);
+   }
 }
 
 function printInstallationHeader (path) {

@@ -18,7 +18,8 @@ const {
    pull,
    npmInstall,
    build,
-   configure,
+   updateEnvironmentConfig,
+   updateMailConfig,
    printInstallationHeader,
    pm2Startup,
    pm2ResartAll
@@ -31,6 +32,7 @@ ifPullIsNeededThen(function () {
    npmInstall();
    checkExternalDependencies();
    build();
-   configure();
+   updateEnvironmentConfig();
+   updateMailConfig();
    pm2ResartAll();
 });
