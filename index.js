@@ -74,7 +74,7 @@ module.exports.start = function (projPath, confPath) {
 
 function chooseEnvirnonment () {
    logSectionInfo('choose enviromnent');
-   return configChoose(activeConfigPath, defaulOptions);
+   return configChoose(activeConfigPath, config);
 }
 
 function checkExternalDependencies (options, dbInstall) {
