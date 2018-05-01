@@ -12,7 +12,7 @@ var initOptions = {
    // environment options
    'branch': 'master',
    'compress': false, // minifie html, js, css
-   'environment': 'default',
+   'environment': 'enviroment',
    'mailTemplates': 'mail',
 
    // update options
@@ -64,13 +64,21 @@ module.exports.start = function (projPath, confPath) {
 
 function checkExternalDependencies (options) {
    var customShellScript = projectPath + '/shell/getCustomExternalDeps.sh';
-   if (fs.existsSync(customShellScript)) sh('.' + projectPath);
+   logSectionInfo('installing external dependencies ... ');
+   log.info('checking custom external dependencies script under ' + customShellScript);
+   if (fs.existsSync(customShellScript)) {
+      log.info('custom script found, executing it');
+      sh('.' + projectPath);
+   }
+
    getExternalDeps();
 }
 
 function ifPullIsNeededThen (options, callback) {
 
    var opts = _.merge(defaulOptions, options);
+
+   logSectionInfo('checking git status');
 
    if (!git.isGitSync(projectPath)) {
       return log.error(projectPath + 'is no git repo, aborting');
@@ -108,6 +116,7 @@ function ifPullIsNeededThen (options, callback) {
 
 function pull (options) {
    var opts = _.merge(defaulOptions, options);
+   logSectionInfo('get latest code');
    var pullCmd = 'git pull origin ' + opts.branch;
    if (opts.forcePull) pullCmd += ' --force';
    sh(pullCmd);
@@ -115,12 +124,14 @@ function pull (options) {
 
 function build (options) {
    var opts = _.merge(defaulOptions, options);
+   logSectionInfo('build the app');
    sh('npm install');
    sh('grunt buildDev');
    if (opts.compress) sh('grunt compress');
 }
 
 function configure (options, force) {
+   logSectionInfo('configuring project');
    var opts = _.merge(defaulOptions, options);
    if (force || opts.refreshConfig) sh('grunt copy:' + opts.environment);
    if (force || opts.refreshMailTemplates) sh('grunt copy:' + opts.mailTemplates);
@@ -131,11 +142,13 @@ function printInstallationHeader (path) {
    log.info('RAPIDFACTURE');
    log.info('-----------------------------------------');
    log.info(packageJson.name + ' Installation');
-   console.log('\n');
    log.info(packageJson.description);
+   // console.log('\n');
+   log.info('starting installation ...');
 }
 
 function pm2Startup () {
+   logSectionInfo('starting up with pm2');
    sh('pm2 start server.js --name ' + packageJson.name);
    sh('pm2 startup');
    sh('sudo su -c "env PATH=$PATH:/usr/bin pm2 startup systemd -u $USER --hp /home/$USER"', 'Make startup script execute on system start');
@@ -154,4 +167,9 @@ function sh (cmd, infomessage) {
    if (infomessage) log.info(infomessage);
    log.info('executing ', cmd);
    shell.exec(cmd);
+}
+
+function logSectionInfo (message) {
+   log.info(message);
+   log.info('--------------------------------------------');
 }
