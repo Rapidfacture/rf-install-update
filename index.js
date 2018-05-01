@@ -115,7 +115,7 @@ function ifPullIsNeededThen (options, callback) {
       }
    }
 
-   if (gitState.branch !== opts.branch) {
+   if (gitState.branch && gitState.branch !== opts.branch) {
       log.warning('git: wrong branch ' + gitState.branch + ' , switching to branch ' + opts.branch);
       sh('git checkout ' + opts.branch);
    }
@@ -128,7 +128,7 @@ function ifPullIsNeededThen (options, callback) {
 function pull (options) {
    var opts = _.merge(defaulOptions, options);
    logSectionInfo('get latest code');
-   var pullCmd = 'git pull origin ' + opts.branch;
+   var pullCmd = 'git pull' + (opts.branch ? 'origin ' + opts.branch : '');
    if (opts.forcePull) pullCmd += ' --force';
    sh(pullCmd);
 }
