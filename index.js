@@ -161,10 +161,8 @@ function printInstallationHeader (path) {
    var rfBig = '   _______   ___    _   ___ ___ ___  ___  _   ___ _____ _   _ ___ ___\n  /       / | _ \\  /_\\ | _ \\_ _|   \\| __|/_\\ / __|_   _| | | | _ \\ __|\n /  ( )  /  |   / / _ \\|  _/| || |) | _|/ _ \\ (__  | | | |_| |   / _| \n/_______/   |_|_\\/_/ \\_\\_| |___|___/|_|/_/ \\_\\___| |_|  \\___/|_|_\\___|';
    // var rfSmall = '   _______    _  _  _ ___ _   __ _  __ ___    _  __\n  /       /  |_)|_||_) | | \\ |_ |_|/    | | ||_)|_ \n /  ( )  /   | \\| ||  _|_|_/ |  | |\\__  | |_|| \\|__ \n/______ /';
    console.log(rfBig);
-   log.info('-----------------------------------------');
-   log.info(packageJson.name + ' Installation');
+   logSectionInfo(packageJson.name + ' Installation');
    log.info(packageJson.description);
-   // console.log('\n');
    log.info('starting installation ...');
 }
 
