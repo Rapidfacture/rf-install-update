@@ -143,7 +143,7 @@ function build (options) {
 function configure (options, force) {
    logSectionInfo('configuring project');
    var opts = _.merge(defaulOptions, options);
-   if (opts.refreshConfig) sh('grunt copy:' + opts.environment);
+   if (opts.environment && opts.refreshConfig) sh('grunt copy:' + opts.environment);
    if (force || opts.refreshMailTemplates) sh('grunt copy:' + opts.mailTemplates);
 }
 
