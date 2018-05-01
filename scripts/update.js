@@ -4,6 +4,7 @@
  * optionas: according to update options in config file
  *
  */
+/* eslint no-unused-vars: off */
 
 // get project folder path
 var path = require('path');
@@ -18,8 +19,8 @@ const {
    npmInstall,
    build,
    configure,
-   // printInstallationHeader,
-   // pm2Startup
+   printInstallationHeader,
+   pm2Startup,
    pm2ResartAll
 } = require('rf-install-update').start(projectPath);
 
