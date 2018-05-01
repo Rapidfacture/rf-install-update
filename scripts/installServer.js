@@ -8,6 +8,7 @@ const {
    checkExternalDependencies,
    // ifPullIsNeededThen,
    // pull,
+   // npmInstall
    build,
    configure,
    printInstallationHeader,
@@ -20,9 +21,7 @@ const {
 (async function install () {
    printInstallationHeader();
    checkExternalDependencies();
-   console.log('await chooseEnvirnonment');
    var config = await chooseEnvirnonment();
-   console.log('after chooseEnvirnonment', config);
    build(config);
    configure(config, 'force');
    pm2Startup();

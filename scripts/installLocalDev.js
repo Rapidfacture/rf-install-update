@@ -8,6 +8,7 @@ const {
    checkExternalDependencies,
    // ifPullIsNeededThen,
    // pull,
+   // npmInstall,
    build,
    configure,
    printInstallationHeader

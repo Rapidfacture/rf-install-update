@@ -12,9 +12,10 @@ var projectPath = path.join(__dirname, '../.');
 // import utils
 const {
    // chooseEnvirnonment, // this function is async
-   // checkExternalDependencies,
+   checkExternalDependencies,
    ifPullIsNeededThen,
    pull,
+   npmInstall,
    build,
    configure,
    // printInstallationHeader,
@@ -26,6 +27,8 @@ const {
 // do the installation
 ifPullIsNeededThen(function () {
    pull();
+   npmInstall();
+   checkExternalDependencies();
    build();
    configure();
    pm2ResartAll();
