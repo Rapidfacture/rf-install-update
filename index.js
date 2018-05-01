@@ -35,7 +35,7 @@ module.exports.start = function (projPath, confPath) {
 
    // try to get config options from project config
    if (fs.existsSync(configPath)) {
-      config = readPkg.sync(configPath);
+      config = require(configPath);
       defaulOptions = _.merge(initOptions, config);
    } else {
       log.info(`file ${configPath} not existent, using initOptions`);
