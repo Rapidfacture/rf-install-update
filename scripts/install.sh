@@ -9,7 +9,7 @@ else
 fi
 echo "\n"
 
-# npm install
+npm install
 
 # get project path
 cd ..
