@@ -9,7 +9,7 @@ else
 fi
 echo "\n"
 
-npm install
+# npm install
 
 # get project path
 cd ..
@@ -19,4 +19,8 @@ projectPath=$(pwd)
 # echo "console.log('$projectPath');" | node
 
 # exec node script
-echo "require('rf-install-update').install.start('$projectPath');" | node
+installPath="tmpInstall.js"
+
+echo "require('rf-install-update').install.start('$projectPath');" > $installPath
+node $installPath
+rm -R $installPath
