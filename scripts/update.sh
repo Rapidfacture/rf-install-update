@@ -14,3 +14,5 @@ installPath="tmpInstall.js"
 echo "require('rf-install-update').update.start('$projectPath');" > $installPath
 node $installPath
 rm -R $installPath
+
+exit 0
