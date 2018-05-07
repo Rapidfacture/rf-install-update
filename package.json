@@ -21,6 +21,7 @@
     "read-pkg": "3.0.0",
     "inquirer-confirm": "0.2.2",
     "git-state": "4.0.0",
-    "prompts": "0.1.8"
+    "prompts": "0.1.8",
+    "git-needs-pull": "1.0.2"
   }
 }
