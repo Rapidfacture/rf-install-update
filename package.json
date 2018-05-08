@@ -1,6 +1,6 @@
 {
   "name": "rf-install-update",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "installation and update tools for rapidfacture software",
   "main": "index.js",
   "repository": {
