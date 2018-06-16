@@ -65,6 +65,18 @@ var config = {
 
 ```
 
+## building custom install scripts for external programs
+
+```js
+const checkAndInstall = require('rf-install-update').checkAndInstall;
+
+// install via shell command
+checkAndInstall('inkscape', 'sudo apt-get install inkscape');
+
+// install via function
+checkAndInstall('programme XY', function(shell, cmd){ console.log('now installing ' + cmd);});
+```
+
 
 ## Development
 Currently no tests implemented.
