@@ -51,12 +51,12 @@ var config = {
       // environment options
       'branch': 'master',
       'compress': false, // minifie html, js, css
-      'environment': 'enviroment',
+      'environment': 'environment',
       'mailTemplates': 'mail',
 
       // update options
       'forcePull': false, // overwrite local changes
-      'refreshConfig': false, // overwrite enviroment config with fresh one from git
+      'refreshConfig': false, // overwrite environment config with fresh one from git
       'refreshMailTemplates': false, //  overwrite mail templates with fresh one from git
       'refreshDatabase': false //  NOTE: critical - for local dev or on system install; overwrite database samples
    }
