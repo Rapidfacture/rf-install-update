@@ -10,10 +10,10 @@ updateProject(){
 }
 
 # list of projects to be updated
-updateProject cad prod force
-updateProject login prod force
-updateProject website prod force
-# updateProject STEPImport prod force
+updateProject cad
+updateProject login
+updateProject website
+# updateProject STEPImport
 
 
 exit 0
