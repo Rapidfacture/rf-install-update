@@ -17,7 +17,7 @@
     "command-exists": "1.2.6",
     "shelljs": "0.8.1",
     "rf-log": "0.1.6",
-    "lodash": "4.17.5",
+    "lodash": "4.17.11",
     "read-pkg": "3.0.0",
     "inquirer-confirm": "0.2.2",
     "git-state": "4.0.0",
