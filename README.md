@@ -83,6 +83,10 @@ Currently no tests implemented.
 You might edit the package included in a standard app, check functionality, then update the package.
 
 
+## ToDo
+* maybe do a `npm rebuild node-sass`?
+
+
 ## Legal Issues
 * Licenese: MIT
 * Author: Felix Furtmayr
